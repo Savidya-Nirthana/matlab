@@ -1,0 +1,13 @@
+I = imread('images.png');
+if length(size(I)) == 3
+    I = rgb2gray(I);
+end
+
+LOG = edge(I, 'log');
+Canny = edge(I, 'canny');
+
+
+subplot(2,3,1);imshow(I);hold on;
+subplot(2,3,2);imshow(LOG);hold on;
+subplot(2,3,3);imshow(Canny);
+su
