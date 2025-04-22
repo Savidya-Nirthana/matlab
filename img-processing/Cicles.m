@@ -1,0 +1,15 @@
+I = imread('./images/circles.png');
+
+I = im2bw(I);
+SE = strel("disk", 16);
+
+J = imdilate(I, SE);
+
+subplot(2,2,1); imshow(I); hold on;
+subplot(2,2,2); imshow(J);
+
+
+K = imerode(J, SE);
+
+subplot(2,2,3); imshow(K);
+
