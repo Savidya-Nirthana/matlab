@@ -39,5 +39,31 @@ for i = 1:length(C)
     
     accuracy(i) = WinnerTakesAll(valData, predict, A);
 end % end for i
+
+[elt, ind] = max(accuracy);
+cOpt = C(ind);
+
+options = svmlopt('C', cOpt, 'Verbosity', 0);  % verbose off  %linear
+predict=[];
+
+for ckass=1:N
+        Model=['Model', int2str(A(class)), 'VsAll'];  % label (model name Model${className}VsAll)  ex: Model1VsAll
+        x = invertData(trData, A(class));   
+        y = x(:, end); % target vector
+        x(:,end) = [];  %only data metrics without targets
+        svmlwrite('SVMLTrain', x,y); %tokenize
+        svm_learn(options, 'SVMLTrain', Model); 
         
         
+        xtest = invertData(teData, A(class));
+        ytest = xtest(:, end);
+        xtest(:, end) = [];
+        svmwrite('SVMLVal', xtest, ytest);
+        ModelOutput = ['ModelOutput', int2str(A(class)), 'VsAll'];  %output name like previous
+        svm_classify(options, 'SVMLTest', Model, ModelOutput); % options -> kernal, parameter values, under ModelOutPut name model save
+        svmpredict = svmread(ModelOutput);
+        predict = [predict, svmpredict];
+    end %end for classs
+
+        
+accuracy = WinnerTakesAll(teData, predict, A);
