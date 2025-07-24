@@ -1,0 +1,14 @@
+SVM-light Version V6.01
+0 # kernel type
+3 # kernel parameter -d 
+1 # kernel parameter -g 
+1 # kernel parameter -s 
+1 # kernel parameter -r 
+empty# kernel parameter -u 
+4 # highest feature index 
+105 # number of training documents 
+4 # number of support vectors plus 1 
+-1.450659 # threshold b, each following line is a SV (starting with alpha*y)
+0.67133124193592109 1:5.0999999 2:3.3 3:1.7 4:0.5 #
+-0.74805795914494122 1:5.0999999 2:2.5 3:3 4:1.1 #
+0.076723707575483968 1:4.5 2:2.3 3:1.3 4:0.30000001 #
