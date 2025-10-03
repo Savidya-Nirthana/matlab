@@ -58,7 +58,7 @@ predict=[];
         xtest = invertData(teData, A(class));
         ytest = xtest(:, end);
         xtest(:, end) = [];
-        svmlwrite('SVMLVal', xtest, ytest);
+        svmlwrite('SVMLTest', xtest, ytest);
         ModelOutput = ['ModelOutput', int2str(A(class)), 'VsAll'];  %output name like previous
         svm_classify(options, 'SVMLTest', Model, ModelOutput); % options -> kernal, parameter values, under ModelOutPut name model save
         svmpredict = svmlread(ModelOutput);
@@ -67,4 +67,5 @@ predict=[];
 
         
 accuracy = WinnerTakesAll(teData, predict, A);
+
 
